@@ -36,7 +36,7 @@ class SmokeOpenCVDetector(BaseDetector):
         """Close detector and free all resources"""
         pass
 
-DEFAULT_VIDEO_SRC = '/Users/lucky13/Downloads/Hack/vc_11_smoke_0_persones_0_01.mp4'
+DEFAULT_VIDEO_SRC = '../../data/videos/vc_11_smoke_0_persones_0_01.mp4'
 
 if __name__ == '__main__':
     import sys
@@ -59,3 +59,7 @@ if __name__ == '__main__':
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
         cv2.imshow('aa', frame)
+        key = cv2.waitKey(1)
+        if key & 0xFF == ord('q'):
+            break
+
