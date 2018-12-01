@@ -15,8 +15,8 @@ import config as cfg
 
 
 class HumanDetector:
-    def __init__(self, path_to_ckpt):
-        self.path_to_ckpt = path_to_ckpt
+    def __init__(self, **kwargs):
+        self.path_to_ckpt = kwargs['path_to_model']
 
         self.detection_graph = tf.Graph()
         with self.detection_graph.as_default():
