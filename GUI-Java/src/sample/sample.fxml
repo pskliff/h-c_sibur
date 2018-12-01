@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.StackPane?>
+<VBox fx:id="camera" alignment="center" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121" fx:controller="sample.Controller">
+    <StackPane fx:id="video" prefHeight="250" prefWidth="550" style="-fx-background-color: rgba(0,0,0,0.41)"/>
+    <Label fx:id="info" text="Some text">
+    </Label>
+</VBox>
