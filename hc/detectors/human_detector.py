@@ -11,7 +11,7 @@ import tensorflow as tf
 
 import argparse
 
-import config as cfg
+
 
 
 class HumanDetector:
@@ -67,38 +67,38 @@ class HumanDetector:
 
 
 
-def process_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-f", "--filename", default="l_05_persons_0_01.mp4",
-                        help="increase output verbosity")
-    return parser
-
-
-if __name__ == "__main__":
-    parser = process_args()
-    args = parser.parse_args()
-
-    model_path = os.path.join(cfg.data_dir, 'ssd_mobilenet_v1_coco_2018_01_28/frozen_inference_graph.pb')
-    odapi = HumanDetector(path_to_ckpt=model_path)
-    threshold = 0.3
-    cap = cv2.VideoCapture(os.path.join(cfg.videos_dir, args.filename))
-
-    while True:
-        r, img = cap.read()
-        img = cv2.resize(img, (1280, 720))
-
-        boxes, scores, classes, num = odapi.processFrame(img)
-
-        # Visualization of the results of a detection.
-
-        for i in range(len(boxes)):
-            # Class 1 represents human
-            if classes[i] == 1 and scores[i] > threshold:
-                box = boxes[i]
-                cv2.rectangle(img,(box[1],box[0]),(box[3],box[2]),(255,0,0),2)
-
-        cv2.imshow("preview", img)
-        key = cv2.waitKey(1)
-        if key & 0xFF == ord('q'):
-            break
+# def process_args():
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument("-f", "--filename", default="l_05_persons_0_01.mp4",
+#                         help="increase output verbosity")
+#     return parser
+#
+#
+# if __name__ == "__main__":
+#     parser = process_args()
+#     args = parser.parse_args()
+#
+#     model_path = os.path.join(cfg.data_dir, 'ssd_mobilenet_v1_coco_2018_01_28/frozen_inference_graph.pb')
+#     odapi = HumanDetector(path_to_ckpt=model_path)
+#     threshold = 0.3
+#     cap = cv2.VideoCapture(os.path.join(cfg.videos_dir, args.filename))
+#
+#     while True:
+#         r, img = cap.read()
+#         img = cv2.resize(img, (1280, 720))
+#
+#         boxes, scores, classes, num = odapi.processFrame(img)
+#
+#         # Visualization of the results of a detection.
+#
+#         for i in range(len(boxes)):
+#             # Class 1 represents human
+#             if classes[i] == 1 and scores[i] > threshold:
+#                 box = boxes[i]
+#                 cv2.rectangle(img,(box[1],box[0]),(box[3],box[2]),(255,0,0),2)
+#
+#         cv2.imshow("preview", img)
+#         key = cv2.waitKey(1)
+#         if key & 0xFF == ord('q'):
+#             break
 

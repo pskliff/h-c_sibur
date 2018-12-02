@@ -10,6 +10,7 @@ import datetime
 from detectors.human_detector import HumanDetector
 import json
 import logging
+import argparse
 from pprint import pprint
 
 LOG_LEVEL = logging.INFO
@@ -138,5 +139,15 @@ class detectionPipeline(BaseDetector):
         pass
 
 
+def process_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--filename", default="l_05_persons_0_01.mp4",
+                        help="increase output verbosity")
+    return parser
+
 if __name__ == "__main__":
-    pipe = detectionPipeline('./', './config_ex.json')
+    parser = process_args()
+    args = parser.parse_args()
+
+    model_path = os.path.join('.', 'ssd_mobilenet_v1_coco_2018_01_28/frozen_inference_graph.pb')
+    pipe = detectionPipeline('./', './config_ex.json', models_paths=model_path)
