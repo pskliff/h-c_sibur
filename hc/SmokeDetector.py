@@ -5,6 +5,9 @@ import cv2
 
 class SmokeOpenCVDetector(BaseDetector):
 
+    def __init__(self, **kwargs):
+        pass
+
     def processFrame(self, frame):
         """
         Process frame and return bounding boxes with scores
@@ -36,7 +39,7 @@ class SmokeOpenCVDetector(BaseDetector):
         """Close detector and free all resources"""
         pass
 
-DEFAULT_VIDEO_SRC = '../../data/videos/vc_11_smoke_0_persones_0_01.mp4'
+DEFAULT_VIDEO_SRC = '/Users/lucky13/Desktop/Hack/l_05_persons_0_smoke_1_01.mp4'
 
 if __name__ == '__main__':
     import sys
@@ -58,7 +61,7 @@ if __name__ == '__main__':
         for x, y, w, h in bboxes:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
-        cv2.imshow('aa', frame)
+        cv2.imshow('Test Smoke', frame)
         key = cv2.waitKey(1)
         if key & 0xFF == ord('q'):
             break
